@@ -1,27 +1,16 @@
-/* eslint-disable react-native/no-inline-styles */
+import 'react-native-gesture-handler';
 import React from 'react';
-import {
-  Container,
-  TextLogin,
-  Logo,
-  InputField,
-  ButtonLogin,
-  ButtonText,
-  RegisterText,
-} from './style';
-import ImagemFundo from './Assets/Images/fundo.jpeg';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import Login from './Containers/Login';
 
+const Stack = createStackNavigator();
 const App = () => (
-  <Container>
-    <Logo source={ImagemFundo} />
-    <TextLogin>Faça seu Login</TextLogin>
-    <InputField placeholder="Digite seu Email" />
-    <InputField placeholder="Digite sua Senha" />
-    <ButtonLogin>
-      <ButtonText>Login</ButtonText>
-    </ButtonLogin>
-    <RegisterText>Se você não possui cadastro, Registre-se</RegisterText>
-  </Container>
+  <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} />
+    </Stack.Navigator>
+  </NavigationContainer>
 );
 
 export default App;
