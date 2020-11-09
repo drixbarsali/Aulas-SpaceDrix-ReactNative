@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {Pressable} from 'react-native';
 
 export const Container = styled.View`
   background-color: #ccc;
@@ -27,7 +28,7 @@ export const InputField = styled.TextInput`
   background-color: white;
 `;
 
-export const ButtonLogin = styled.Pressable`
+export const ButtonLogin = styled(Pressable)`
   background-color: #ddd;
   padding: 10px;
   margin: 10px;
