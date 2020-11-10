@@ -22,7 +22,7 @@ const Login = () => {
       <TextLogin>Faça seu Login</TextLogin>
       <InputField placeholder="Digite seu Email" />
       <InputField placeholder="Digite sua Senha" />
-      <ButtonLogin>
+      <ButtonLogin onPress={() => nav.navigate('MenuHome')}>
         <ButtonText>Login</ButtonText>
       </ButtonLogin>
       <Pressable onPress={() => nav.navigate('Register')}>
