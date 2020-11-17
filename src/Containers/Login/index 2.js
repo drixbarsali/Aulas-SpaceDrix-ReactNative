@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   Container,
@@ -11,18 +10,18 @@ import {
 } from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {Pressable} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+
 import ImagemFundo from '../../Assets/Images/fundo.jpeg';
 
 const Login = () => {
   const nav = useNavigation();
   return (
     <Container>
-      <Icon name="alert-triangle" size={100}/>
+      <Logo source={ImagemFundo} />
       <TextLogin>Faça seu Login</TextLogin>
       <InputField placeholder="Digite seu Email" />
       <InputField placeholder="Digite sua Senha" />
-      <ButtonLogin onPress={() => nav.navigate('MenuHome')}>
+      <ButtonLogin>
         <ButtonText>Login</ButtonText>
       </ButtonLogin>
       <Pressable onPress={() => nav.navigate('Register')}>
