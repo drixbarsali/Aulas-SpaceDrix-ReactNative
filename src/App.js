@@ -4,6 +4,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Feather';
 
 import Login from './Containers/Login';
 import Register from './Containers/Register';
@@ -15,7 +16,15 @@ const Tab = createBottomTabNavigator();
 
 const MenuHome = () => (
   <Tab.Navigator>
-    <Tab.Screen name="Home" component={Home} />
+    <Tab.Screen
+      name="Home"
+      component={Home}
+      options={{
+        tabBarIcon: () => (
+          <Icon name="alert-triangle" size={20} color="black" />
+        ),
+      }}
+    />
     <Tab.Screen name="MinhaAgenda" component={MinhaAgenda} />
   </Tab.Navigator>
 );
