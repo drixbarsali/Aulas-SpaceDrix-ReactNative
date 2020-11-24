@@ -1,5 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import analytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
+
 import {
   Container,
   TextLogin,
@@ -15,10 +18,15 @@ import Icon from 'react-native-vector-icons/Feather';
 import ImagemFundo from '../../Assets/Images/fundo.jpeg';
 
 const Login = () => {
+  async () =>
+    await analytics().logSelectContent({
+      content_type: 'clothing',
+      item_id: 'abcd',
+    });
   const nav = useNavigation();
   return (
     <Container>
-      <Icon name="alert-triangle" size={100}/>
+      <Icon name="alert-triangle" size={100} />
       <TextLogin>Faça seu Login</TextLogin>
       <InputField placeholder="Digite seu Email" />
       <InputField placeholder="Digite sua Senha" />

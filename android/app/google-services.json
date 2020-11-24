@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1017780458800",
+    "firebase_url": "https://agendamento-c859e.firebaseio.com",
+    "project_id": "agendamento-c859e",
+    "storage_bucket": "agendamento-c859e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017780458800:android:ea17701d775aa51f69a4f5",
+        "android_client_info": {
+          "package_name": "com.aulacomponentes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017780458800-0dvk59490elh5pun08k4oc33voqt2su0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbEi73k0ndUD-AokdEkpwiVVZzOLEbHYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017780458800-0dvk59490elh5pun08k4oc33voqt2su0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
