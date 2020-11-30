@@ -29,11 +29,12 @@ export const InputField = styled.TextInput`
 `;
 
 export const ButtonLogin = styled(Pressable)`
-  background-color: #ddd;
+  background-color: ${(props) => (props.disabled ? '#000' : '#ddd')};
   padding: 10px;
   margin: 10px;
   width: 100%;
   align-items: center;
+  opacity: ${(props) => (props.disabled ? '0.3' : '1')};
 `;
 
 export const ButtonText = styled.Text`
