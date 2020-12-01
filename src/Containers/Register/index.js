@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
+
 import {
   Container,
   ButtonLogin,
@@ -15,7 +17,11 @@ const Login = () => {
   const nav = useNavigation();
 
   const [email, setEmail] = useState('');
+  const [nome, setNome] = useState('');
+  const [telefone, setTelefone] = useState('');
+
   const [error, setError] = useState(false);
+
   const [errorText, setErrorText] = useState('');
 
   const [password, setPassword] = useState('');
@@ -23,6 +29,12 @@ const Login = () => {
 
   const settingEmail = (e) => {
     setEmail(e.nativeEvent.text);
+  };
+  const settingNome = (e) => {
+    setNome(e.nativeEvent.text);
+  };
+  const settingTelefone = (e) => {
+    setTelefone(e.nativeEvent.text);
   };
   const settingPassword = (e) => {
     setPassword(e.nativeEvent.text);
@@ -32,11 +44,16 @@ const Login = () => {
   };
 
   const enviar = () => {
-    if (password === confirmPassword) {
+
+    if (password === confirmPassword && nome !== '' && telefone !== '') {
       setError(false);
       auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(() => {
+        .then((response) => {
+          database().ref(`/users/${email}`).set({
+            nome: nome,
+            telefone: telefone,
+          });
           setPassword('');
           setConfirm('');
           setEmail('');
@@ -67,6 +84,18 @@ const Login = () => {
     <Container>
       <ErrorText>{error && errorText} </ErrorText>
       <RegisterText>Registre-se</RegisterText>
+      <CustomInput
+        icon="user"
+        onChange={settingNome}
+        placeholder="Preencha seu Nome"
+        value={nome}
+      />
+      <CustomInput
+        icon="phone"
+        onChange={settingTelefone}
+        placeholder="Preencha seu Telefone"
+        value={telefone}
+      />
       <CustomInput
         icon="mail"
         onChange={settingEmail}
