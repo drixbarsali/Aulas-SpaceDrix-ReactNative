@@ -17,24 +17,56 @@ const Tab = createBottomTabNavigator();
 const MenuHome = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="Home"
+      name="Datas"
       component={Home}
       options={{
-        tabBarIcon: () => (
-          <Icon name="alert-triangle" size={20} color="black" />
-        ),
+        headerTransparent: true,
+        tabBarIcon: () => <Icon name="book" size={20} color="black" />,
       }}
     />
-    <Tab.Screen name="MinhaAgenda" component={MinhaAgenda} />
+    <Tab.Screen
+      name="MinhaAgenda"
+      component={MinhaAgenda}
+      options={{
+        headerTransparent: true,
+        tabBarIcon: () => <Icon name="book-open" size={20} color="black" />,
+        title: 'Minha Agenda',
+      }}
+    />
+    <Tab.Screen
+      name="Contato"
+      component={MinhaAgenda}
+      options={{
+        headerTransparent: true,
+        tabBarIcon: () => <Icon name="phone" size={20} color="black" />,
+        title: 'Contato',
+      }}
+    />
   </Tab.Navigator>
 );
 
 const App = () => (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="MenuHome" component={MenuHome} />
+      <Stack.Screen
+        name="Login"
+        options={{
+          headerShown: false,
+        }}
+        component={Login}
+      />
+      <Stack.Screen
+        options={{
+          headerTransparent: true,
+        }}
+        name="Register"
+        component={Register}
+      />
+      <Stack.Screen
+        name="MenuHome"
+        component={MenuHome}
+        options={{title: 'Datas Disponíveis'}}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );

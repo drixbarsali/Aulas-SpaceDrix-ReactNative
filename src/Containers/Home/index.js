@@ -1,53 +1,59 @@
-import React, {useState, useEffect} from 'react';
-import database from '@react-native-firebase/database';
-import {View, Text} from 'react-native';
-import CustomInput from './../../Components/CustomInput';
-import {Button} from './styles';
-
+import React from 'react';
+import AgendaItem from '../../Components/AgendaItem';
+import {ScrollView} from 'react-native';
+import {Container} from './styles';
 const Home = () => {
-  const [nome, SetNome] = useState('');
-  const [email, setEmail] = useState('');
-  const [idade, setIdade] = useState('');
-
-  const saveData = () => {
-    database().ref('/users/').set({
-      nome: nome,
-      email: email,
-      idade: idade,
-    });
-  };
-
-  const addNome = (e) => {
-    SetNome(e.nativeEvent.text);
-  };
-  const addIdade = (e) => {
-    setIdade(e.nativeEvent.text);
-  };
-  const addEmail = (e) => {
-    setEmail(e.nativeEvent.text);
-  };
+  const diasDisponiveis = [
+    {
+      id: 1,
+      dia: '10/12/2020',
+      hora: '13h00',
+      disponivel: true,
+    },
+    {
+      id: 2,
+      dia: '10/12/2020',
+      hora: '14h00',
+      disponivel: false,
+    },
+    {
+      id: 3,
+      dia: '10/12/2020',
+      hora: '15h00',
+      disponivel: true,
+    },
+    {
+      id: 4,
+      dia: '11/12/2020',
+      hora: '13h00',
+      disponivel: true,
+    },
+    {
+      id: 5,
+      dia: '11/12/2020',
+      hora: '14h00',
+      disponivel: false,
+    },
+    {
+      id: 6,
+      dia: '13/12/2020',
+      hora: '15h00',
+      disponivel: true,
+    },
+  ];
   return (
-    <View>
-      <CustomInput
-        placeholder="Digite Seu Nome"
-        onChange={addNome}
-        value={nome}
-      />
-      <CustomInput
-        placeholder="Digite sua Idade"
-        onChange={addIdade}
-        value={idade}
-      />
-      <CustomInput
-        placeholder="Digite seu Email"
-        onChange={addEmail}
-        value={email}
-      />
-
-      <Button onPress={saveData}>
-        <Text>Gravar no Realtime Database</Text>
-      </Button>
-    </View>
+    <Container>
+      <ScrollView style={{padding: 10}}>
+        {diasDisponiveis.map((item) => (
+          <AgendaItem
+            key={item.id}
+            data={item.dia}
+            hora={item.hora}
+            disponivel={item.disponivel}
+          />
+        ))}
+      </ScrollView>
+    </Container>
   );
 };
 

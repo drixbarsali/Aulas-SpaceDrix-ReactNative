@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 
-export const Button = styled.Pressable`
-  width: 100%;
-  background: #ffd800;
-  justify-content: center;
-  align-items: center;
+export const Container = styled.View`
+  background: lightgray;
+  justify-content: flex-start;
+
   padding: 10px;
-  margin: 10px;
+
+  flex: 1;
 `;

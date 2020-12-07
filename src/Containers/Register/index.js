@@ -48,13 +48,8 @@ const Login = () => {
       setError(false);
       auth()
         .createUserWithEmailAndPassword(email, password)
-
-          
-
-
         .then((response) => {
           const uid = auth().currentUser.uid;
-
           database().ref(`/users/${uid}`).set({
             nome: nome,
             telefone: telefone,
@@ -70,12 +65,10 @@ const Login = () => {
             setError(true);
             setErrorText('Email Já Cadastrado');
           }
-
           if (error.code === 'auth/invalid-email') {
             setError(true);
             setErrorText('Email inválido');
           }
-
           console.error(error);
         });
     } else {
@@ -100,6 +93,7 @@ const Login = () => {
         onChange={settingTelefone}
         placeholder="Preencha seu Telefone"
         value={telefone}
+        keyboardType="numeric"
       />
       <CustomInput
         icon="mail"
