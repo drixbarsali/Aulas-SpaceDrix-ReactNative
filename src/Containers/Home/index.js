@@ -9,15 +9,13 @@ const Home = () => {
   const [email, setEmail] = useState('');
   const [idade, setIdade] = useState('');
 
-  const saveData = () =>{
+  const saveData = () => {
     database().ref('/users/').set({
       nome: nome,
       email: email,
       idade: idade,
     });
-
-  }
-  
+  };
 
   const addNome = (e) => {
     SetNome(e.nativeEvent.text);

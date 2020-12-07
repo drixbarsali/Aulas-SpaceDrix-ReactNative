@@ -44,13 +44,18 @@ const Login = () => {
   };
 
   const enviar = () => {
-
     if (password === confirmPassword && nome !== '' && telefone !== '') {
       setError(false);
       auth()
         .createUserWithEmailAndPassword(email, password)
+
+          
+
+
         .then((response) => {
-          database().ref(`/users/${email}`).set({
+          const uid = auth().currentUser.uid;
+
+          database().ref(`/users/${uid}`).set({
             nome: nome,
             telefone: telefone,
           });
