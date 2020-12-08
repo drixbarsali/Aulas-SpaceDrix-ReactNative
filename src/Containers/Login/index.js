@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState, useEffect} from 'react';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   Container,
   TextLogin,
@@ -21,7 +21,31 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isDisabled, setDisabled] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   const nav = useNavigation();
+
+  useEffect(() => {
+    const isLogged = async () => {
+      setIsLogged(true);
+
+      if ((await AsyncStorage.getItem('logado')) === 'true') {
+        setIsLogged(true);
+        nav.navigate('MenuHome');
+      } else {
+        setIsLogged(false);
+      }
+    };
+    isLogged();
+  }, []);
+
+  const storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('logado', 'true');
+    } catch (e) {
+      // saving error
+      console.log(e);
+    }
+  };
 
   const doLogin = () => {
     const regex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -30,6 +54,7 @@ const Login = () => {
       auth()
         .signInWithEmailAndPassword(email, password)
         .then(() => {
+          storeData();
           nav.navigate('MenuHome');
         })
         .catch((error) => {
@@ -58,27 +83,33 @@ const Login = () => {
 
   return (
     <Container>
-      <Icon name="alert-triangle" size={100} />
-      <TextLogin>Faça seu Login</TextLogin>
-      <CustomInput
-        onChange={setEmailText}
-        icon="mail"
-        value={email}
-        placeholder="Preencha seu Email"
-      />
-      <CustomInput
-        onChange={setPasswordText}
-        icon="lock"
-        value={password}
-        placeholder="Preencha sua Senha"
-        isPassword={true}
-      />
-      <ButtonLogin disabled={isDisabled} onPress={doLogin}>
-        <ButtonText>Login</ButtonText>
-      </ButtonLogin>
-      <Pressable onPress={() => nav.navigate('Register')}>
-        <RegisterText>Se você não possui cadastro, Registre-se</RegisterText>
-      </Pressable>
+      {!isLogged && (
+        <>
+          <Icon name="alert-triangle" size={100} />
+          <TextLogin>Faça seu Login</TextLogin>
+          <CustomInput
+            onChange={setEmailText}
+            icon="mail"
+            value={email}
+            placeholder="Preencha seu Email"
+          />
+          <CustomInput
+            onChange={setPasswordText}
+            icon="lock"
+            value={password}
+            placeholder="Preencha sua Senha"
+            isPassword={true}
+          />
+          <ButtonLogin disabled={isDisabled} onPress={doLogin}>
+            <ButtonText>Login</ButtonText>
+          </ButtonLogin>
+          <Pressable onPress={() => nav.navigate('Register')}>
+            <RegisterText>
+              Se você não possui cadastro, Registre-se
+            </RegisterText>
+          </Pressable>
+        </>
+      )}
     </Container>
   );
 };

@@ -10,6 +10,7 @@ import Login from './Containers/Login';
 import Register from './Containers/Register';
 import Home from './Containers/Home';
 import MinhaAgenda from './Containers/MinhaAgenda';
+import Contatos from './Containers/Contatos';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -35,7 +36,7 @@ const MenuHome = () => (
     />
     <Tab.Screen
       name="Contato"
-      component={MinhaAgenda}
+      component={Contatos}
       options={{
         headerTransparent: true,
         tabBarIcon: () => <Icon name="phone" size={20} color="black" />,
